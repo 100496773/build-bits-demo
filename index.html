@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build-Bits Interactive Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">
+        <i data-lucide="bot"></i>
+        <span>Build-Bits</span>
+      </div>
+      <div class="player-hud">
+        <div class="hud-level">Player Lvl <span id="hud-level-text">1</span></div>
+        <div class="hud-xp-bar-container">
+          <div class="hud-xp-bar" id="hud-xp-bar"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN INTERFACE -->
+    <main class="main-container">
+      
+      <!-- LEFT / CENTER COLUMN: Play Area -->
+      <section class="game-area">
+        
+        <!-- MODE SELECTOR -->
+        <nav class="mode-selector">
+          <button class="mode-tab active" data-mode="guided">Guided</button>
+          <button class="mode-tab" data-mode="creative">Creative</button>
+          <button class="mode-tab" data-mode="memory">Memory</button>
+          <button class="mode-tab" data-mode="challenge">Challenge</button>
+        </nav>
+
+        <!-- Dynamic Game Board Area -->
+        <div class="board-container">
+          <div id="reference-panel" class="hidden">
+             <h4>Goal Build</h4>
+             <div class="reference-grid"></div>
+          </div>
+          <div class="build-space" id="build-space"></div>
+        </div>
+
+        <!-- TRAY -->
+        <div class="pieces-tray">
+          <h4>Your Pieces</h4>
+          <div class="tray-content" id="tray-content"></div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Robot Assistant -->
+      <aside class="robot-panel">
+        <div class="robot-face-container">
+          <svg class="robot-svg" viewBox="0 0 100 100">
+            <rect x="10" y="10" width="80" height="80" rx="20" fill="var(--color-robot-bg)" />
+            <rect x="20" y="20" width="60" height="40" rx="10" fill="var(--color-bg)" />
+            <circle cx="35" cy="40" r="4" fill="var(--color-text)" class="eye left-eye" />
+            <circle cx="65" cy="40" r="4" fill="var(--color-text)" class="eye right-eye" />
+            <path d="M 40 50 Q 50 50 60 50" stroke="var(--color-text)" stroke-width="3" fill="none" stroke-linecap="round" class="mouth" />
+          </svg>
+        </div>
+        
+        <div class="robot-dialogue">
+          <div class="speech-bubble" id="robot-message">
+            Hi! I'm Build-Bot. Let's make something amazing together!
+          </div>
+        </div>
+
+        <div class="robot-controls">
+          <div class="mode-info">
+             <span id="mode-level-text" class="mode-badge">Guided Mode — Level 1</span>
+          </div>
+
+          <div class="progress-bar-container">
+            <div class="progress-bar" id="game-progress"></div>
+          </div>
+          <p id="progress-text">Step 0 of 0</p>
+          
+          <div id="challenge-stats" class="hidden">
+            <span id="score-text">Score: 0</span> | <span id="timer-text">00:00</span>
+          </div>
+
+          <div class="action-buttons">
+            <button id="btn-hint" class="btn btn-secondary">
+              <i data-lucide="lightbulb"></i> Need a clue?
+            </button>
+            <button id="btn-restart" class="btn btn-tertiary">
+              <i data-lucide="rotate-ccw"></i> Restart
+            </button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- EXTRAS: Completion Overlay -->
+    <div id="reward-overlay" class="hidden">
+       <div class="reward-card">
+         <div class="stars" id="reward-stars">⭐⭐⭐</div>
+         <h2 id="reward-title">Awesome focus!</h2>
+         <p id="reward-message">You completed the build.</p>
+         
+         <div class="reward-stats">
+           <div class="stat-badge bg-primary">Points: +<span id="reward-points">0</span></div>
+           <div class="stat-badge bg-success">XP: +<span id="reward-xp">0</span></div>
+         </div>
+         
+         <div class="reward-progress-container">
+            <div class="reward-progress-bar" id="reward-progress-bar"></div>
+         </div>
+         <p id="reward-level-text">Player Lvl 1</p>
+
+         <button id="btn-next-level" class="btn btn-primary">Next Level</button>
+       </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
